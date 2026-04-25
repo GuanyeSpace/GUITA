@@ -7,7 +7,7 @@
     "lint": "cd .. && pnpm exec prisma format --schema prisma/schema.prisma",
     "test": "node -e \"console.log('No tests yet for @guita/db')\"",
     "db:generate": "cd .. && pnpm exec prisma generate --schema prisma/schema.prisma",
-    "db:migrate": "cd .. && pnpm exec prisma migrate dev --schema prisma/schema.prisma",
+    "db:migrate": "cd .. && sh -c 'pnpm exec prisma migrate dev --schema prisma/schema.prisma \"$@\"' --",
     "db:seed": "cd .. && pnpm exec tsx prisma/seed.ts",
     "db:format": "cd .. && pnpm exec prisma format --schema prisma/schema.prisma",
     "db:diff": "cd .. && pnpm exec prisma migrate diff --from-empty --to-schema-datamodel prisma/schema.prisma --script"
