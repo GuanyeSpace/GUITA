@@ -3,27 +3,19 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+      "outputs": ["dist/**", ".next/**", "!.next/cache/"]
     },
     "dev": {
       "cache": false,
       "persistent": true
     },
-    "lint": {
-      "dependsOn": ["^lint"],
-      "outputs": []
-    },
-    "test": {
-      "dependsOn": ["^test"],
-      "outputs": ["coverage/**"]
-    },
+    "lint": {},
+    "test": {},
     "db:generate": {
-      "cache": false,
-      "outputs": []
+      "cache": false
     },
     "db:migrate": {
-      "cache": false,
-      "outputs": []
+      "cache": false
     },
     "db:seed": {
       "cache": false,

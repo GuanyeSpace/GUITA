@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "cd .. && pnpm exec prisma generate --schema prisma/schema.prisma",
     "dev": "node -e \"console.log('Prisma workspace does not expose a long-lived dev server.')\"",
     "lint": "cd .. && pnpm exec prisma format --schema prisma/schema.prisma",
     "test": "node -e \"console.log('No tests yet for @guita/db')\"",
