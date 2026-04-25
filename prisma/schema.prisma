@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum SourceChannel {
+  MINIAPP
+  ADMIN
+  API
+  OPS
+}
+
+enum UserHostRelationType {
+  FOLLOWING
+  FAVORITED
+  COMPLETED_INTRO
+}
+
+model Host {
+  id            String             @id @default(cuid())
+  slug          String             @unique
+  displayName   String
+  title         String
+  tagline       String
+  ageBand       String
+  mobilityLevel String
+  isPublished   Boolean            @default(false)
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+  userRelations UserHostRelation[]
+}
+
+model User {
+  id            String             @id @default(cuid())
+  unionId       String?            @unique
+  nickname      String?
+  phoneNumber   String?            @unique
+  city          String?
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+  hostRelations UserHostRelation[]
+}
+
+model UserHostRelation {
+  id            String               @id @default(cuid())
+  userId        String
+  hostId        String
+  relationType  UserHostRelationType @default(FOLLOWING)
+  sourceChannel SourceChannel
+  createdAt     DateTime             @default(now())
+  updatedAt     DateTime             @updatedAt
+  host          Host                 @relation(fields: [hostId], references: [id], onDelete: Cascade)
+  user          User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, hostId, relationType], map: "user_host_relation_unique")
+  @@index([hostId])
+  @@index([sourceChannel])
+}

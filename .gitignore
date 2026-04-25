@@ -1,7 +1,13 @@
-.DS_Store
 node_modules/
-miniprogram_npm/
 dist/
-
-# WeChat DevTools local-only config
-project.private.config.json
+.next/
+.turbo/
+coverage/
+miniapp_npm/
+miniprogram_npm/
+.env
+.env.local
+.env.*.local
+pnpm-debug.log*
+*.tsbuildinfo
+.DS_Store

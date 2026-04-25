@@ -1,0 +1,43 @@
+{
+  "name": "guita",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.33.2",
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "db:generate": "turbo run db:generate --filter=@guita/db",
+    "db:migrate": "turbo run db:migrate --filter=@guita/db",
+    "db:seed": "turbo run db:seed --filter=@guita/db",
+    "db:format": "turbo run db:format --filter=@guita/db",
+    "db:diff": "turbo run db:diff --filter=@guita/db"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.19.3",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^11.0.21",
+    "@nestjs/schematics": "^11.1.0",
+    "@tailwindcss/postcss": "^4.2.4",
+    "@types/node": "^20.17.57",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@typescript-eslint/eslint-plugin": "^8.59.0",
+    "@typescript-eslint/parser": "^8.59.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^3.10.1",
+    "eslint-plugin-import": "^2.32.0",
+    "postcss": "^8.5.6",
+    "prettier": "^3.8.3",
+    "prisma": "^6.19.3",
+    "tsx": "^4.20.6",
+    "turbo": "^2.9.6",
+    "typescript": "^5.9.3",
+    "@types/express": "^5.0.5",
+    "tailwindcss": "^4.2.4"
+  }
+}

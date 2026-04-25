@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "strict": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@guita/shared-schema": ["packages/shared-schema/src/index.ts"],
+      "@guita/shared-schema/*": ["packages/shared-schema/src/*"],
+      "@guita/shared-types": ["packages/shared-types/src/index.ts"],
+      "@guita/shared-types/*": ["packages/shared-types/src/*"],
+      "@guita/api-client": ["packages/api-client/src/index.ts"],
+      "@guita/api-client/*": ["packages/api-client/src/*"]
+    }
+  }
+}

@@ -1,0 +1,6 @@
+<view class="container">
+  <view class="card">
+    <view class="page-title">{{title}}</view>
+    <view class="page-copy">当前页面只保留目录与路由占位，不接入任何 auth 逻辑。</view>
+  </view>
+</view>

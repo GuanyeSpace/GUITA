@@ -1,0 +1,15 @@
+{
+  "name": "@guita/config",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./eslint-preset.js",
+  "exports": {
+    "./eslint-preset": "./eslint-preset.js",
+    "./tsconfig.base.json": "./tsconfig.base.json"
+  },
+  "scripts": {
+    "build": "node -e \"console.log('No build step required for @guita/config')\"",
+    "lint": "node -e \"console.log('No lint step required for @guita/config')\"",
+    "test": "node -e \"console.log('No tests yet for @guita/config')\""
+  }
+}

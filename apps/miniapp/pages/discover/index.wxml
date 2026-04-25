@@ -1,0 +1,6 @@
+<view class="container">
+  <view class="card">
+    <view class="page-title">{{title}}</view>
+    <view class="page-copy">后续步骤再接内容流和推荐模块。</view>
+  </view>
+</view>

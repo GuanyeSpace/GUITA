@@ -1,0 +1,6 @@
+<view class="container">
+  <view class="card">
+    <view class="page-title">{{title}}</view>
+    <view class="page-copy">后续步骤再接个人信息、关系和设置能力。</view>
+  </view>
+</view>

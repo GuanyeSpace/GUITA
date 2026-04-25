@@ -1,0 +1,14 @@
+{
+  "name": "@guita/miniapp",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "node -e \"console.log('Open apps/miniapp in WeChat DevTools to run the miniapp.')\"",
+    "build": "tsc --noEmit -p tsconfig.json",
+    "lint": "eslint . --ext .ts",
+    "test": "node -e \"console.log('No tests yet for @guita/miniapp')\""
+  },
+  "devDependencies": {
+    "miniprogram-api-typings": "^5.1.3"
+  }
+}

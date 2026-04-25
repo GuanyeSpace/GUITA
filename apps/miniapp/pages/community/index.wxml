@@ -1,0 +1,6 @@
+<view class="container">
+  <view class="card">
+    <view class="page-title">{{title}}</view>
+    <view class="page-copy">后续步骤再接社区动态与互动能力。</view>
+  </view>
+</view>

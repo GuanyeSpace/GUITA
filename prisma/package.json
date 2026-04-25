@@ -1,0 +1,16 @@
+{
+  "name": "@guita/db",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "cd .. && pnpm exec prisma generate --schema prisma/schema.prisma",
+    "dev": "node -e \"console.log('Prisma workspace does not expose a long-lived dev server.')\"",
+    "lint": "cd .. && pnpm exec prisma format --schema prisma/schema.prisma",
+    "test": "node -e \"console.log('No tests yet for @guita/db')\"",
+    "db:generate": "cd .. && pnpm exec prisma generate --schema prisma/schema.prisma",
+    "db:migrate": "cd .. && pnpm exec prisma migrate dev --schema prisma/schema.prisma --name init",
+    "db:seed": "cd .. && pnpm exec tsx prisma/seed.ts",
+    "db:format": "cd .. && pnpm exec prisma format --schema prisma/schema.prisma",
+    "db:diff": "cd .. && pnpm exec prisma migrate diff --from-empty --to-schema-datamodel prisma/schema.prisma --script"
+  }
+}

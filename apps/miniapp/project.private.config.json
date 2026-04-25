@@ -1,0 +1,8 @@
+{
+  "libVersion": "trial",
+  "projectname": "guita-miniapp",
+  "setting": {
+    "compileHotReLoad": true,
+    "urlCheck": false
+  }
+}

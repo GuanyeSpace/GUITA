@@ -1,0 +1,16 @@
+{
+  "name": "@guita/admin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 3000",
+    "build": "next build",
+    "lint": "eslint . --ext .ts,.tsx",
+    "test": "node -e \"console.log('No tests yet for @guita/admin')\""
+  },
+  "dependencies": {
+    "next": "14.2.35",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  }
+}
