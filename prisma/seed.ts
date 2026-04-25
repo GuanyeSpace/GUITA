@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 async function main() {
-  await prisma.host.upsert({
+  const linling = await prisma.host.upsert({
     where: { slug: 'linling' },
     update: {
       displayName: '灵灵',
@@ -42,6 +42,38 @@ async function main() {
       ageBand: 'ALL_ADULTS',
       mobilityLevel: 'LIGHT_STRENGTH',
       isPublished: true,
+    },
+  })
+
+  await prisma.user.upsert({
+    where: { id: 'GT22222222222A' },
+    update: {
+      nickname: '测试用户',
+      status: 'active',
+    },
+    create: {
+      id: 'GT22222222222A',
+      nickname: '测试用户',
+      status: 'active',
+    },
+  })
+
+  await prisma.userHostRelation.upsert({
+    where: {
+      userId_hostId_relationType: {
+        userId: 'GT22222222222A',
+        hostId: linling.id,
+        relationType: 'PARTICIPANT',
+      },
+    },
+    update: {
+      sourceChannel: 'MINIAPP',
+    },
+    create: {
+      userId: 'GT22222222222A',
+      hostId: linling.id,
+      relationType: 'PARTICIPANT',
+      sourceChannel: 'MINIAPP',
     },
   })
 }

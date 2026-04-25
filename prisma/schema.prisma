@@ -18,6 +18,26 @@ enum UserHostRelationType {
   FOLLOWING
   FAVORITED
   COMPLETED_INTRO
+  PARTICIPANT
+}
+
+enum UserStatus {
+  active
+  inactive
+  banned
+  deleted
+}
+
+enum IdentityType {
+  wechat_miniapp
+  wecom_external
+  phone
+}
+
+enum SessionStatus {
+  active
+  revoked
+  expired
 }
 
 model Host {
@@ -32,17 +52,24 @@ model Host {
   createdAt     DateTime           @default(now())
   updatedAt     DateTime           @updatedAt
   userRelations UserHostRelation[]
+  events        Event[]
 }
 
 model User {
-  id            String             @id @default(cuid())
-  unionId       String?            @unique
-  nickname      String?
-  phoneNumber   String?            @unique
-  city          String?
-  createdAt     DateTime           @default(now())
-  updatedAt     DateTime           @updatedAt
-  hostRelations UserHostRelation[]
+  id               String             @id
+  nickname         String?
+  avatarUrl        String?
+  phone            String?
+  phoneCountryCode String             @default("+86")
+  status           UserStatus         @default(active)
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  hostRelations    UserHostRelation[]
+  identities       Identity[]
+  sessions         Session[]
+  events           Event[]
+
+  @@unique([phone, phoneCountryCode])
 }
 
 model UserHostRelation {
@@ -59,4 +86,49 @@ model UserHostRelation {
   @@unique([userId, hostId, relationType], map: "user_host_relation_unique")
   @@index([hostId])
   @@index([sourceChannel])
+}
+
+model Identity {
+  id         String       @id @default(cuid())
+  userId     String
+  type       IdentityType
+  externalId String
+  unionId    String?
+  metadata   Json?
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  user       User         @relation(fields: [userId], references: [id])
+
+  @@unique([type, externalId])
+  @@index([userId])
+}
+
+model Session {
+  id        String        @id @default(cuid())
+  userId    String
+  status    SessionStatus @default(active)
+  userAgent String?
+  ip        String?
+  issuedAt  DateTime      @default(now())
+  expiresAt DateTime
+  revokedAt DateTime?
+  user      User          @relation(fields: [userId], references: [id])
+
+  @@index([userId, status])
+}
+
+model Event {
+  id         String   @id @default(cuid())
+  userId     String?
+  name       String
+  payload    Json
+  hostId     String?
+  channel    String?
+  occurredAt DateTime @default(now())
+  createdAt  DateTime @default(now())
+  user       User?    @relation(fields: [userId], references: [id])
+  host       Host?    @relation(fields: [hostId], references: [id])
+
+  @@index([userId, occurredAt])
+  @@index([name, occurredAt])
 }
