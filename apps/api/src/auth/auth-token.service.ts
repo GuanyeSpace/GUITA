@@ -1,5 +1,5 @@
 
-import { Injectable, UnauthorizedException } from '@nestjs/common'
+import { Inject, Injectable, UnauthorizedException } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { SignJWT, jwtVerify } from 'jose'
 import { TextEncoder } from 'node:util'
@@ -10,7 +10,7 @@ const encoder = new TextEncoder()
 
 @Injectable()
 export class AuthTokenService {
-  constructor(private readonly configService: ConfigService) {}
+  constructor(@Inject(ConfigService) private readonly configService: ConfigService) {}
 
   getAccessTokenTtlSeconds() {
     return this.configService.get<number>('auth.accessTtlSeconds', 3600)

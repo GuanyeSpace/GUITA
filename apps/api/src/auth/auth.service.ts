@@ -48,9 +48,9 @@ type RequestContext = {
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly prisma: PrismaService,
-    private readonly redis: RedisService,
-    private readonly authTokenService: AuthTokenService,
+    @Inject(PrismaService) private readonly prisma: PrismaService,
+    @Inject(RedisService) private readonly redis: RedisService,
+    @Inject(AuthTokenService) private readonly authTokenService: AuthTokenService,
     @Inject(WECHAT_MINIAPP_PROVIDER) private readonly wechatProvider: WechatMiniappProvider,
     @Inject(WECOM_PROVIDER) private readonly wecomProvider: WecomProvider,
   ) {}

@@ -11,7 +11,7 @@ import {
   RefreshRequestSchema,
   RefreshResponse,
 } from '@guita/shared-schema'
-import { Body, Controller, Get, HttpCode, Post, Query, Req, UseGuards } from '@nestjs/common'
+import { Body, Controller, Get, HttpCode, Inject, Post, Query, Req, UseGuards } from '@nestjs/common'
 import { Request } from 'express'
 
 import { AuthService } from './auth.service'
@@ -20,7 +20,7 @@ import { ZodValidationPipe } from '../common/pipes/zod-validation.pipe'
 
 @Controller('api/v1')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(@Inject(AuthService) private readonly authService: AuthService) {}
 
   @Post('auth/login')
   async login(

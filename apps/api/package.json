@@ -7,7 +7,7 @@
     "build": "nest build",
     "start": "node dist/main.js",
     "lint": "eslint src --ext .ts",
-    "test": "node -e \"console.log('No tests yet for @guita/api')\""
+    "test": "node --import tsx --test src/common/guita-id.spec.ts test/auth.e2e-spec.ts"
   },
   "dependencies": {
     "@guita/shared-schema": "workspace:*",
@@ -26,5 +26,10 @@
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.2",
     "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^11.1.19",
+    "@types/supertest": "^6.0.3",
+    "supertest": "^7.1.4"
   }
 }
