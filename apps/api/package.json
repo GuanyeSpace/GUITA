@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "nest start --watch",
-    "build": "cd ../.. && pnpm exec prisma generate --schema prisma/schema.prisma && cd apps/api && nest build",
+    "dev": "tsx watch src/main.ts",
+    "build": "nest build",
+    "start": "node dist/main.js",
     "lint": "eslint src --ext .ts",
     "test": "node -e \"console.log('No tests yet for @guita/api')\""
   },
