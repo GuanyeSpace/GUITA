@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "pnpm --filter @guita/shared-schema build",
     "dev": "tsx watch src/main.ts",
     "build": "nest build",
     "start": "node dist/main.js",
+    "prelint": "pnpm --filter @guita/shared-schema build",
     "lint": "eslint src --ext .ts",
+    "pretest": "pnpm --filter @guita/shared-schema build",
     "test": "node --import tsx --test src/common/guita-id.spec.ts test/auth.e2e-spec.ts"
   },
   "dependencies": {
