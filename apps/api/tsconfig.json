@@ -12,7 +12,9 @@
     "emitDecoratorMetadata": true,
     "incremental": true,
     "strictPropertyInitialization": false,
-    "types": ["node"]
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {}
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "./dist"]

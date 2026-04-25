@@ -7,9 +7,11 @@ type ZodDtoLike = {
 
 @Injectable()
 export class ZodValidationPipe implements PipeTransform {
+  constructor(private readonly schema?: ZodSchema) {}
+
   transform(value: unknown, metadata: ArgumentMetadata) {
     const metatype = metadata.metatype as ZodDtoLike | undefined
-    const schema = metatype?.schema
+    const schema = this.schema ?? metatype?.schema
 
     if (!schema) {
       return value
