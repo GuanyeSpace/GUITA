@@ -44,6 +44,7 @@ async function resetState() {
   await prisma.event.deleteMany()
   await prisma.session.deleteMany()
   await prisma.identity.deleteMany()
+  await prisma.userReplayProgress.deleteMany()
   await prisma.userHostRelation.deleteMany({
     where: {
       userId: {

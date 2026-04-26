@@ -10,7 +10,7 @@
     "prelint": "pnpm --filter @guita/shared-schema build",
     "lint": "eslint src --ext .ts",
     "pretest": "pnpm --filter @guita/shared-schema build",
-    "test": "node --import tsx --test src/common/guita-id.spec.ts test/auth.e2e-spec.ts"
+    "test": "node --import tsx --test --test-concurrency=1 src/common/guita-id.spec.ts test/auth.e2e-spec.ts test/replays.e2e-spec.ts"
   },
   "dependencies": {
     "@guita/shared-schema": "workspace:*",
