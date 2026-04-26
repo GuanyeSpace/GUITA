@@ -40,5 +40,6 @@ import { MockWecomProvider, RealWecomProvider, WECOM_PROVIDER } from './provider
         (configService.get<string>('providers.wecom', 'mock') === 'real' ? realProvider : mockProvider),
     },
   ],
+  exports: [AuthTokenService, JwtAuthGuard],
 })
 export class AuthModule {}

@@ -28,7 +28,8 @@ export const ReplayListItemSchema = z.object({
       completed: z.boolean(),
       lastViewedAt: z.string(),
     })
-    .nullable(),
+    .nullable()
+    .optional(),
 })
 
 export const ReplayListResponseSchema = z.object({
@@ -80,6 +81,15 @@ export const AdminReplayItemSchema = ReplayDetailSchema.extend({
   updatedAt: z.string(),
 })
 
+export const AdminReplayListQuerySchema = ReplayListQuerySchema.extend({
+  status: ReplayStatusEnum.optional(),
+})
+
+export const AdminReplayListResponseSchema = z.object({
+  items: z.array(AdminReplayItemSchema),
+  nextCursor: z.string().nullable(),
+})
+
 export type ReplayListQuery = z.infer<typeof ReplayListQuerySchema>
 export type ReplayListItem = z.infer<typeof ReplayListItemSchema>
 export type ReplayListResponse = z.infer<typeof ReplayListResponseSchema>
@@ -90,3 +100,5 @@ export type MyReplaysQuery = z.infer<typeof MyReplaysQuerySchema>
 export type AdminCreateReplay = z.infer<typeof AdminCreateReplaySchema>
 export type AdminUpdateReplay = z.infer<typeof AdminUpdateReplaySchema>
 export type AdminReplayItem = z.infer<typeof AdminReplayItemSchema>
+export type AdminReplayListQuery = z.infer<typeof AdminReplayListQuerySchema>
+export type AdminReplayListResponse = z.infer<typeof AdminReplayListResponseSchema>

@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { LoggerModule } from 'nestjs-pino'
 
+import { AdminReplaysModule } from './admin/replays/admin-replays.module'
 import { AuthModule } from './auth/auth.module'
 import { GlobalExceptionFilter } from './common/filters/global-exception.filter'
 import { ZodValidationPipe } from './common/pipes/zod-validation.pipe'
@@ -9,6 +10,7 @@ import configuration, { validateEnvironment } from './config/configuration'
 import { HealthController } from './modules/health/health.controller'
 import { PrismaModule } from './modules/prisma/prisma.module'
 import { RedisModule } from './redis/redis.module'
+import { ReplaysModule } from './replays/replays.module'
 
 @Module({
   imports: [
@@ -39,6 +41,8 @@ import { RedisModule } from './redis/redis.module'
     PrismaModule,
     RedisModule,
     AuthModule,
+    ReplaysModule,
+    AdminReplaysModule,
   ],
   controllers: [HealthController],
   providers: [GlobalExceptionFilter, ZodValidationPipe],

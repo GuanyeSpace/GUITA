@@ -12,6 +12,7 @@ const envSchema = z.object({
   JWT_REFRESH_TTL_SECONDS: z.coerce.number().int().positive().default(604800),
   WECHAT_PROVIDER: z.enum(['mock', 'real']).default('mock'),
   WECOM_PROVIDER: z.enum(['mock', 'real']).default('mock'),
+  ADMIN_TOKEN: z.string().optional(),
 })
 .refine((environment) => environment.JWT_ACCESS_SECRET !== environment.JWT_REFRESH_SECRET, {
   message: 'JWT_ACCESS_SECRET and JWT_REFRESH_SECRET must be different',
@@ -48,6 +49,9 @@ export default function configuration() {
     providers: {
       wechat: env.WECHAT_PROVIDER,
       wecom: env.WECOM_PROVIDER,
+    },
+    admin: {
+      token: env.ADMIN_TOKEN,
     },
     database: {
       url: env.DATABASE_URL,
