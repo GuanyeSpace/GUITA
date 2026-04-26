@@ -40,6 +40,18 @@ enum SessionStatus {
   expired
 }
 
+enum ReplayStatus {
+  draft
+  published
+  archived
+}
+
+enum VideoSourceType {
+  external
+  cos
+  vod
+}
+
 model Host {
   id            String             @id @default(cuid())
   slug          String             @unique
@@ -53,21 +65,23 @@ model Host {
   updatedAt     DateTime           @updatedAt
   userRelations UserHostRelation[]
   events        Event[]
+  replays       LiveReplay[]
 }
 
 model User {
-  id               String             @id
+  id               String               @id
   nickname         String?
   avatarUrl        String?
   phone            String?
-  phoneCountryCode String             @default("+86")
-  status           UserStatus         @default(active)
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @updatedAt
+  phoneCountryCode String               @default("+86")
+  status           UserStatus           @default(active)
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
   hostRelations    UserHostRelation[]
   identities       Identity[]
   sessions         Session[]
   events           Event[]
+  progresses       UserReplayProgress[]
 
   @@unique([phone, phoneCountryCode])
 }
@@ -131,4 +145,45 @@ model Event {
 
   @@index([userId, occurredAt])
   @@index([name, occurredAt])
+}
+
+model LiveReplay {
+  id              String               @id @default(cuid())
+  hostId          String
+  title           String
+  description     String?
+  coverUrl        String?
+  videoUrl        String
+  videoSource     VideoSourceType      @default(external)
+  durationSeconds Int
+  liveAt          DateTime?
+  publishedAt     DateTime?
+  status          ReplayStatus         @default(draft)
+  metadata        Json?
+  createdBy       String?
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @updatedAt
+  host            Host                 @relation(fields: [hostId], references: [id])
+  progresses      UserReplayProgress[]
+
+  @@index([hostId, status, publishedAt])
+  @@index([status, publishedAt])
+}
+
+model UserReplayProgress {
+  id              String     @id @default(cuid())
+  userId          String
+  replayId        String
+  positionSeconds Int        @default(0)
+  durationSeconds Int        @default(0)
+  completed       Boolean    @default(false)
+  firstViewedAt   DateTime   @default(now())
+  lastViewedAt    DateTime   @default(now())
+  completedAt     DateTime?
+  user            User       @relation(fields: [userId], references: [id])
+  replay          LiveReplay @relation(fields: [replayId], references: [id])
+
+  @@unique([userId, replayId])
+  @@index([userId, lastViewedAt])
+  @@index([replayId])
 }

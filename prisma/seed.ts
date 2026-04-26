@@ -45,6 +45,54 @@ async function main() {
     },
   })
 
+  await prisma.liveReplay.upsert({
+    where: { id: 'seed-live-replay-linling-001' },
+    update: {
+      hostId: linling.id,
+      title: '灵灵·中老年甩臂操 第 1 期',
+      status: 'published',
+      videoUrl: 'https://example.com/mock-replay-1.mp4',
+      videoSource: 'external',
+      durationSeconds: 1800,
+      publishedAt: new Date(),
+      liveAt: new Date('2026-04-20T00:00:00.000Z'),
+    },
+    create: {
+      id: 'seed-live-replay-linling-001',
+      hostId: linling.id,
+      title: '灵灵·中老年甩臂操 第 1 期',
+      status: 'published',
+      videoUrl: 'https://example.com/mock-replay-1.mp4',
+      videoSource: 'external',
+      durationSeconds: 1800,
+      publishedAt: new Date(),
+      liveAt: new Date('2026-04-20T00:00:00.000Z'),
+    },
+  })
+
+  await prisma.liveReplay.upsert({
+    where: { id: 'seed-live-replay-linling-002' },
+    update: {
+      hostId: linling.id,
+      title: '灵灵·中老年甩臂操 第 2 期',
+      status: 'draft',
+      videoUrl: 'https://example.com/mock-replay-2.mp4',
+      videoSource: 'external',
+      durationSeconds: 1500,
+      publishedAt: null,
+      liveAt: null,
+    },
+    create: {
+      id: 'seed-live-replay-linling-002',
+      hostId: linling.id,
+      title: '灵灵·中老年甩臂操 第 2 期',
+      status: 'draft',
+      videoUrl: 'https://example.com/mock-replay-2.mp4',
+      videoSource: 'external',
+      durationSeconds: 1500,
+    },
+  })
+
   await prisma.user.upsert({
     where: { id: 'GT22222222222A' },
     update: {
